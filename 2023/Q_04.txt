@@ -1,0 +1,88 @@
+Express.js 
+
+book schema const bookSchema = new mongoose.Schema({
+    title: String;
+    author: String;
+    price: Number,
+    genre: String,
+    available: boolean 
+});
+
+const book = mongoose.model('Book', bookSchema);
+a. //route to list all available bookSchema
+    app.get('/books', async (req, res))=>{
+
+        try{
+            const books = await Book.find();
+            res. status (200).json(books);
+
+        } catch (error) {
+            res.status(500).json({message:error.message});
+        }
+    }
+b. search for books
+     app.get('/books/Search', async(req,res)=>{
+        const {title,author,genre} =req.query
+        try{
+            const query ={};
+            if(title)query.title= new RegExp(title,'i');
+            if (author)query.genre=new RegExp(genre,'i');
+
+            const books = await Book.find(query);
+            res.status(200).json(books);
+        }catch(error){
+            res.status(500).json({ message:error.message });
+
+        }
+     });
+
+c. app.post('/books/purchase/:id',async(req,res)=>{
+    const{id}=req.params;
+    const book = await Book.findById(id);
+    if (!book) return res.status(404).json({message: 'Book not found'});
+    if (!book.availability) return res.status(400).json({ message: 'Book not available' });
+    book.available=false;
+    await book.save();
+
+    res.json({message: 'Purchase sucessful! Payment processed.',book})
+
+    });
+
+SpringBoot
+
+a.@Document(collection ="books")
+
+    public class Book{
+        @id
+        private String id;
+        private String title;
+        private String author;
+        Private double price;
+        private boolean availability =true;
+    }
+
+    @GetMapping
+
+    public List<Book>getAllBooks(){
+        return BookRepo.findAll()
+    }
+
+b.Search for books
+    @GetMapping("/search")
+    public List<Book> searchBooks(@RequestParam String q) {
+        return bookRepo.findByTitleIgnoreCaseContainingOrAuthorIgnoreCaseContainingOrGenreIgnoreCaseContaining(q, q, q);
+    }
+
+c. Purchase a book by ID (simplified)
+    @PostMapping("/purchase/{id}")
+    public String purchaseBook(@PathVariable String id) {
+        Optional<Book> optBook = bookRepo.findById(id);
+        if (optBook.isEmpty()) return "Book not found";
+        Book book = optBook.get();
+        if (!book.isAvailability()) return "Book not available";
+        // Simulate payment
+        book.setAvailability(false);
+        bookRepo.save(book);
+        return "Purchase successful!";
+    }
+

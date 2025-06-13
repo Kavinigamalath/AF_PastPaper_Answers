@@ -1,15 +1,37 @@
  a:   Asses the usage of the middleware in the given code.
-    The only middleware used is express.json(), which parses incomming jason requests so that req.body is available in handlers.
-    this middleware is essential for POST/PUT endpoints that expect Json in the request body.
-    no custom middleware(authentcation, logging,Validation. error handling) is present.
+      The only middleware used is express.json(), which parses incomming jason requests so that req.body is available in handlers.
+      this middleware is essential for POST/PUT endpoints that expect Json in the request body.
+      no custom middleware(authentcation, logging,Validation. error handling) is present.
 
 
 
  b:   What is your opinion on http status code usage in the given code. Critically evaluate.
  (8 Marks)
 
+    #products end point
+
+    when a product is found the existing code returns '204' no content along with a Json body. This is incorrect as '204' should 
+    not have a body. correct status code should be '200' ok. 
+
+    whwn product is not found  the existing code returns '403' Frobidden, more appropriate code in here is '404' not found
+
+    #post order
+    when fail :wrong one 401:Unauthorized, correct one 400 Bad request
+    when success: wrong'200' ok correct one '201' created
+
  c:   Suggest a REST API Authentication method for the above project andjustify your
  suggestion.
+
+    JWT json web Tokens :widely used in rest APIs for stateless , scalable authentication.
+    each clent recieves signed token when login which set in authentication header for each api call.
+    Express middleware can validate tokens easily.
+
  (3 Marks)
  d:   Considering the SOLID principles, assess the design patterns or techniques that need
  to be implemented to ensure the code was maintainable, extensible, and easy to test
+
+    single responsibility:separate route handlers, bussiness logic and data access separate service files.
+    Open closed principles: structure to add new features without modifing  excisting logic (use moduler controllers,middle ware)
+    liskove Substitution Principle :Use interface like structures for services so they can Be replaced/extended without breaking the API
+    Interface Segregation Principle Route Handler should not be forced to depend on un used methods - keep controller s/ servide focused
+    deprndancy Inversion : Depend on abstractions eg: use dependancy indection for DB/Services. allowe easy testing/ mocking.

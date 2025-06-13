@@ -1,0 +1,35 @@
+ Answer the following questions below on Maven, Spring and Spring Boot.
+ a)   Defend how Maven simplifies the process of managing project dependencies and
+ building applications in Java-based projects.
+ (3 Marks)
+    simplifies project management by providing a standard way to handle  dependancied, builds, and project configurationa. 
+    IT use a central repository for managing libraries , ensuring that all dependancies are consistently included in the project.
+    Maven automates the download and update of dependancies, reducing manual management and protential conflicts.
+    Additionally it offer a wide range of plugins to automate tasks such as compilation, testing and packaging , making build process 
+    more efficiant and less error prone. 
+
+
+ b)   Discover the role of the porn.xml file in Maven and how does it help to manage
+    project dependencies and build settings.
+    core configuration file for maven projects. It defines Project dependancies ,plugins , goals and othee building settings
+    by declairing dependencies  in pom.xml maven automatically resolves, downloads and includes them in the project. IT also allows for easy management of project versions and configurations, making build process repeatable and consistent accross different environments.
+    
+ c)   Intexpret Dependency Injection (DI).
+        design pattern used to implement inversion  of control. IT allows a class's dependencies to be injected by an exteranl entity rather than being instantiated within class.
+        This results in loose coupling , easier testing,better code maintainability. In spring dependancy Injection can be achived through annotations like @ antwired @ component @service @repository which facilitate automatic injection of dependencies at runtime.
+ d)   Explain how you would use the features of Spring Boot to create a RESTful APIs
+        To create springboot Rest API, we can start by setting up a spring boot project with the necessary dependencies, such as spring web, database driver,etc. Define REST controllers using the @Restcontroller annotation and map HTTP requests to handle 
+        methods using @ RequestMapping or other request mapping annotations like @GetMapping , @post mapping ect. automatic configuration and embedded server in springboot support simplify the development process, allowing to focu on writing business logic rather than boilerplate code
+
+ c)   Justify how Spring Boot simplify the development and deployment of microservices
+ (4 Marks)
+        providing embedded servers , which eliminate the need for external web servers, ITS auto-configuaration capabilities ruduce the need for extensive XML configuration. Springboot starters provides a set of per configured dependencies for building specific type of applications. Additionally
+        features like spring cloud integrate well with springboot .offering solutions for service discovery, configuration manaement and distributed tracing, making microservices easier to implement and manage.
+
+  e)   Assess the challenges of microservices that addresses by Spring Boot.
+ (3 Marks)
+
+        configuration management: centralize and automate s configuration, reducing setup errors across services.
+        Service discovery and load balancing:built in integration with discovery services and load balancers helps microservices find each other and scale efficiently.
+        Health Checks & Monitoring: Offers built in metrics and health endpoints for easier monitoring and maintenance
+        Embedded Server: NO need for external service configuration simply deployment
