@@ -1,0 +1,13 @@
+a. 
+1. performance-evaluate the performance needs- does it require high concurrency (many users at once), low latency, heavy computation
+2. Development speed & Ecosystem: how quickly can features be develop and release? availability of  libraries , frameworks and community support 
+3. Team expertise : what technology are the team members already familier with learning new technology will add over head. 
+4. cost & Licensing: consider cost of development , hosting and any licensing.
+5. Security:support best security practices and have a mature, well audited ecosystem.
+
+b. Backend : Node js with Express js
+   DB: Mongo DB
+
+   good fit for handeling asynchrounous operations and I/O tasks, which is benifitial for realtime features like booking systems. Mongodb suitable for  handelling flexible data models typically required in web app and offers integration with node js.
+
+   

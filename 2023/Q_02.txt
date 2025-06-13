@@ -1,0 +1,15 @@
+ a:   Asses the usage of the middleware in the given code.
+    The only middleware used is express.json(), which parses incomming jason requests so that req.body is available in handlers.
+    this middleware is essential for POST/PUT endpoints that expect Json in the request body.
+    no custom middleware(authentcation, logging,Validation. error handling) is present.
+
+
+
+ b:   What is your opinion on http status code usage in the given code. Critically evaluate.
+ (8 Marks)
+
+ c:   Suggest a REST API Authentication method for the above project andjustify your
+ suggestion.
+ (3 Marks)
+ d:   Considering the SOLID principles, assess the design patterns or techniques that need
+ to be implemented to ensure the code was maintainable, extensible, and easy to test
