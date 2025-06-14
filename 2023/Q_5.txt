@@ -1,0 +1,123 @@
+a.Home page
+
+import React, {useEffect,useState} from 'react';
+import axios from 'axios'
+
+const BookList=()=>{ 
+    const [books,setBooks]=useState([]);
+
+    useEffect(()=> {
+        const fetchBooks = async =()=>{
+            try{
+                const response=await axios.get(http://locahost:3000/books')
+                setBooks(response.data);
+            }catch(error){
+                console.error{
+                    console.error('Error fetching books:' ,error);
+                }
+            }
+            };
+            fetchBooks();
+            },[]);
+
+            return(
+                <div>
+                    <h1> available books </h1>
+                        <ul>
+                        {
+                            book.map(book=> (
+                                <li key = {book.id}>
+                                {book.title} by {book.author}-${ book.price}
+                                </li>
+                            ))
+                        }
+                        </ul>
+                </div>
+            );
+        }; export default BookList;
+
+b. Const Search =()=>{
+    const[query,setQuery]=useState('');
+    const[results,SetResults]= useState([]);
+
+    const handleSearch=async(e) ={
+        e. preventDefault();
+        try{
+            const response= await axios.get('http://localhost:3000/books/search',{params:{q:query}});
+            setResults(response.data);
+        }catch(error){
+            console.error('Error Searching books: ',error);
+        }
+    };
+    return(
+        <div>
+        <h1>Search Books</h1>
+        <form onSubmit= {handleSearch}>
+        <input
+            type="text"
+            value={query}
+            onchange={(e)=> setQuery(e.target.value) }
+            placeholder = 'Search by title/author/ genre'
+        />
+        </form>
+        <ul>
+        {results.map(book =>(
+            <li key = {book.id}> {book.title} by {book.author}-${book.price}</li>
+        ))}
+        </ul>
+        </div>
+    );
+}; export default Search
+
+c. const BookDetails = ({books}) => {
+        const{id} = useParams();
+        const book = books.find(b= b.id === parseInt(id));
+
+        const handlePurchase = async () => {
+            try{
+                const response = await axios.get(http://localhost:3000/books/purchase/${book.id});
+                alert (response.data.message);
+
+            } catch(error){
+                console.error('Error purchasing: ',error);
+            }
+        };
+
+        if (!book) return <div> book not found </div>
+
+        return(
+            <div>
+                <h1>{book.title}</h1>
+                <p>Author: {book.author}</p>
+                <p>Genre: {book.genre} </p>
+                <p>Price:{book.price}  </p>
+                <p>Available: {book.available}?"Yes":"No"</p>
+                {{book,available&& <button onClick =  {handle Purchase} > Purchase} </button>}
+            </div>
+            );
+        }; export default BookDetails;
+
+d.     const cart =({cart,onCheckout})=>{
+        const total = cart reduce( ( sum,book))=> sum+bookprice,0);
+
+        return(
+            <div>
+             <h1>Shopping Cart</h1>
+             <ul>
+             {cart.map(book =>( 
+                <li key={book.id}>
+                {book.title}by{book.author}-${book.price}
+                </li>
+                <h2>Total:${total.toFixed(2)}</h2>
+                <button on click = {on Checkout}>chechout</button>
+                </div>
+
+
+             );
+             }; export default cart;
+        )
+}
+        
+    
+
+    
